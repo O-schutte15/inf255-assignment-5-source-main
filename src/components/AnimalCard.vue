@@ -7,7 +7,8 @@ function arrivalText(intakeDate) {
   const date = dayjs(intakeDate);
   return `Arrived ${date.format("MMM D, YYYY")} (${dayjs().diff(date, "day")} days ago)`;
 }
-// TODO 3: Declare the toggle event with defineEmits().
+const emit = defineEmits(["toggle"]);
+// App owns the animal data, so the card creates an event instead of changing it directly.
 </script>
 
 <template>
@@ -22,7 +23,7 @@ function arrivalText(intakeDate) {
 
     <p>{{ animal.adopted ? "Adopted" : "Available" }}</p>
 
-    <button type="button">
+    <button type="button" @click="emit('toggle')">
       {{ animal.adopted ? "Return" : "Adopt" }}
     </button>
   </article>

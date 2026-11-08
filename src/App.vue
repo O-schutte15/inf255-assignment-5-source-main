@@ -56,6 +56,9 @@ loadAnimals();
 
 // ------------------------------------
 // Filter, Sort, and Count
+function toggleAdoption(animal) {
+  animal.adopted = !animal.adopted;
+}
 // ------------------------------------
 
 // TODO 4: Create activeFilter and activeSort, the visibleAnimals and
@@ -86,6 +89,7 @@ loadAnimals();
             v-for="animal in animals"
             :key="animal.id"
             :animal="animal"
+            @toggle="toggleAdoption(animal)"
           />
         </div>
       </div>
