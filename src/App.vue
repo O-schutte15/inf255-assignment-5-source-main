@@ -29,7 +29,7 @@ const error = ref("");
 // ------------------------------------
 // Adopt or Return an Animal
 // ------------------------------------
-async function loadAnimals()
+async function loadAnimals() {
   loading.value = true;
   error.value = "";
 
@@ -76,7 +76,15 @@ loadAnimals();
       <!-- TODO 4: The AnimalControls component goes here. -->
 
       <div id="animal-list" aria-live="polite">
-        <!-- TODO 1: The loading, error, and empty messages, and the animals, go here. -->
+        <p v-if="loading">Loading animals...</p>
+
+        <p v-else-if="error" class="error-message">{{ error }}</p>
+
+        <div v-else>
+          <p v-for="animal in animals" :key="animal.id">
+            {{ animal.name }}
+          </p>
+        </div>
       </div>
     </section>
   </main>
